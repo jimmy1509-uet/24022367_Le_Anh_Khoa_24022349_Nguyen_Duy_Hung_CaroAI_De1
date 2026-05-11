@@ -3,19 +3,20 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 ASSETS_DIR = ROOT.parent / "assets"
 
-ROWS = 9
-COLS = 9
-WIN = 4
-CELL = 50  # Giảm từ 60 xuống 50 để cửa sổ nhỏ hơn
-MARGIN = 30  # Giảm margin
-PANEL_W = 250  # Giảm panel width
+ROWS = 15
+COLS = 15
+WIN = 5
+CELL = 50
+MARGIN = 20
+PANEL_W = 200
 
 BOARD_W = COLS * CELL
 BOARD_H = ROWS * CELL
 WIN_W = MARGIN + BOARD_W + MARGIN + PANEL_W + MARGIN
 WIN_H = MARGIN + BOARD_H + MARGIN + 60
 
-MAX_DEPTH = 2
+MAX_DEPTH = 4
+BEAM_WIDTH = 20  # Số nước đi tối đa xem xét tại mỗi nút
 
 BG = (245, 243, 235)
 GRID_COL = (200, 195, 180)

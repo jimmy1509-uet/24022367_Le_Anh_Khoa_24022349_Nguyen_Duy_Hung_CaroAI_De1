@@ -2,8 +2,19 @@ import sys
 import pygame
 from constants import *
 from game import Game, check_win, is_full
-import ai
-import renderer
+from src.ai.game_logic import do_ai_move
+from src.ui.board import draw_board
+from src.ui.menu import draw_menu, get_slider_y
+from src.ui.statistics import draw_statistics
+
+
+def load_unicode_font(size: int) -> pygame.font.Font:
+    """Load a system font that supports Unicode/Vietnamese."""
+    for name in ["Segoe UI", "Arial", "Tahoma", "Verdana", "DejaVu Sans"]:
+        path = pygame.font.match_font(name)
+        if path:
+            return pygame.font.Font(path, size)
+    return pygame.font.SysFont(None, size)
 
 
 def main():
@@ -12,22 +23,23 @@ def main():
     pygame.display.set_caption("Caro — Minimax AI")
     clock = pygame.time.Clock()
 
-    fn_big = pygame.font.Font(None, 15)
-    fn_med = pygame.font.Font(None, 13)
-    fn_sm = pygame.font.Font(None, 11)
-    fn_mono = pygame.font.Font(None, 11)
+    fn_big = load_unicode_font(15)
+    fn_med = load_unicode_font(13)
+    fn_sm = load_unicode_font(11)
+    fn_mono = load_unicode_font(11)
     fonts = (fn_big, fn_med, fn_sm, fn_mono)
 
     game = Game()
     ai_pending = False
-    slider_x = MARGIN + BOARD_W + MARGIN + 14
-    slider_w = PANEL_W - 28
-    slider_y, slider_y2 = renderer.get_slider_y(fonts)
     dragging_slider = False
     dragging_slider_algo = False
 
     while True:
         clock.tick(60)
+
+        slider_x = MARGIN + BOARD_W + MARGIN + 14
+        slider_w = PANEL_W - 28
+        slider_y, slider_y2 = get_slider_y(fonts)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -64,6 +76,7 @@ def main():
 
             if event.type == pygame.MOUSEBUTTONUP:
                 dragging_slider = False
+                dragging_slider_algo = False
                 mx, my = event.pos
 
                 if not game.game_over and game.player_turn and not ai_pending:
@@ -119,14 +132,18 @@ def main():
                 game.algorithm = max(0, min(2, round(raw * 2)))
 
         if ai_pending:
-            renderer.draw_board(screen, game, fonts)
+            draw_board(screen, game, fonts)
+            draw_menu(screen, game, fonts)
+            draw_statistics(screen, game, fonts)
             pygame.display.flip()
             pygame.time.delay(60)
-            ai.do_ai_move(game)
+            do_ai_move(game)
             game.thinking = False
             ai_pending = False
 
-        renderer.draw_board(screen, game, fonts)
+        draw_board(screen, game, fonts)
+        draw_menu(screen, game, fonts)
+        draw_statistics(screen, game, fonts)
         pygame.display.flip()
 
 
