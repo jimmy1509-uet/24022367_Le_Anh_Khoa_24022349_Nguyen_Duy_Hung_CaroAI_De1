@@ -4,21 +4,28 @@ class Game:
     def __init__(self):
         self.reset()
 
-    def reset(self):
+    def reset(self, mode="PvAI", ai_first=False):
+        self.mode = mode
+        self.ai_first = ai_first
         self.grid = [[EMPTY] * COLS for _ in range(ROWS)]
         self.history = []
         self.game_over = False
-        self.player_turn = True
+        self.player_turn = not (mode == "PvAI" and ai_first)
         self.win_cells = []
         self.depth = MAX_DEPTH
-        self.algorithm = 1  # 0: minimax, 1: alpha-beta, 2: compare
+        self.algorithm = 1  # 0: minimax, 1: alpha-beta
         self.last_move = None
         self.last_score = None
         self.last_states = 0
         self.last_time = 0.0
         self.move_log = []
-        self.status_msg = "Lượt của bạn — nhấp vào ô trống"
         self.thinking = False
+        if mode == "PvP":
+            self.status_msg = "Chế độ Người vs Người — Người 1 đi trước"
+        elif mode == "PvAI" and ai_first:
+            self.status_msg = "AI đi trước..."
+        else:
+            self.status_msg = "Lượt của bạn — nhấp vào ô trống"
 
     def undo_last_moves(self, count=2):
         undone = 0

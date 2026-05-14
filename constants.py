@@ -1,11 +1,11 @@
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-ASSETS_DIR = ROOT.parent / "assets"
+ASSETS_DIR = ROOT / "assets"
 
 ROWS = 15
 COLS = 15
-WIN = 5
+WIN = 4
 CELL = 50
 MARGIN = 20
 PANEL_W = 200

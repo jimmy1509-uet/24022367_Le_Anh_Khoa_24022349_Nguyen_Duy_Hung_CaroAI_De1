@@ -7,7 +7,7 @@ THREE = 10000      # Ba quân liên tiếp
 THREE_OBSTACLE = 5000  # Ba quân bị chặn
 FOUR = 100000000   # Bốn quân liên tiếp
 FOUR_OBSTACLE = 50000000  # Bốn quân bị chặn
-WINNING = 2000000000  # Năm quân thắng
+WINNING = 2000000000  # Bốn quân thắng
 
 # Điểm số cho đối thủ
 TWO_OPPONENT = -200
