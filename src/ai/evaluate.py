@@ -1,63 +1,59 @@
 from constants import *
 
 # Điểm số cho các mẫu đường thẳng
-TWO = 100          # Hai quân liên tiếp
-TWO_OBSTACLE = 50  # Hai quân bị chặn một đầu
-THREE = 10000      # Ba quân liên tiếp
-THREE_OBSTACLE = 5000  # Ba quân bị chặn
-FOUR = 100000000   # Bốn quân liên tiếp
-FOUR_OBSTACLE = 50000000  # Bốn quân bị chặn
-WINNING = 2000000000  # Bốn quân thắng
+THREE = 100000000         # Ba quân liên tiếp hở 2 đầu (Rất nguy hiểm)
+THREE_OBSTACLE = 50000000 # Ba quân bị chặn một đầu
+TWO = 10000               # Hai quân liên tiếp hở 2 đầu
+TWO_OBSTACLE = 5000       # Hai quân bị chặn một đầu
+WINNING = 2000000000      # Đạt 4 quân (Thắng)
 
-# Điểm số cho đối thủ
-TWO_OPPONENT = -200
-TWO_OBSTACLE_OPPONENT = -30
-THREE_OPPONENT = -20000
-THREE_OBSTACLE_OPPONENT = -7500
-FOUR_OPPONENT = -200000000
-FOUR_OBSTACLE_OPPONENT = -100000000
+# Điểm số cho đối thủ (Ưu tiên chặn)
+THREE_OPPONENT = -200000000
+THREE_OBSTACLE_OPPONENT = -100000000
+TWO_OPPONENT = -20000
+TWO_OBSTACLE_OPPONENT = -7500
 LOSING = -1000000000
 
 def eval_pattern(count, open_ends, player):
     """
-    Đánh giá một chuỗi liên tiếp theo số quân và đầu mở.
+    Đánh giá chuỗi liên tiếp cho luật 4 quân thắng.
+    WIN = 4 (từ constants)
     """
     if player == AI:
+        # Trường hợp thắng ngay lập tức
         if count >= WIN:
             return WINNING
+        
+        # Trường hợp có 3 quân (WIN - 1)
         if count == WIN - 1:
             if open_ends == 2:
-                return FOUR
-            if open_ends == 1:
-                return FOUR_OBSTACLE
-        if count == WIN - 2:
-            if open_ends == 2:
-                return THREE
+                return THREE # Hở 2 đầu là chắc chắn thắng
             if open_ends == 1:
                 return THREE_OBSTACLE
-        if count == WIN - 3:
+        
+        # Trường hợp có 2 quân (WIN - 2)
+        if count == WIN - 2:
             if open_ends == 2:
                 return TWO
             if open_ends == 1:
                 return TWO_OBSTACLE
-    else:
+                
+    else: # Đánh giá phía Người chơi (Đối thủ)
         if count >= WIN:
             return LOSING
+        
         if count == WIN - 1:
-            if open_ends == 2:
-                return FOUR_OPPONENT
-            if open_ends == 1:
-                return FOUR_OBSTACLE_OPPONENT
-        if count == WIN - 2:
             if open_ends == 2:
                 return THREE_OPPONENT
             if open_ends == 1:
                 return THREE_OBSTACLE_OPPONENT
-        if count == WIN - 3:
+        
+        if count == WIN - 2:
             if open_ends == 2:
                 return TWO_OPPONENT
             if open_ends == 1:
                 return TWO_OBSTACLE_OPPONENT
+                
     return 0
 
 def evaluate(grid):
