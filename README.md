@@ -1,6 +1,6 @@
 # Trò Chơi Caro AI 🏆
 
-Một triển khai Python hoàn chỉnh của trò chơi Caro (Gomoku) với đối thủ AI thông minh sử dụng thuật toán Minimax và Alpha-Beta pruning. Dự án này được phát triển như một phần của môn học Trí Tuệ Nhân Tạo.
+Một triển khai Python hoàn chỉnh của trò chơi Caro (Gomoku) với đối thủ AI thông minh sử dụng thuật toán Minimax và Alpha-Beta pruning. Dự án này được phát triển như một phần của môn học CSAI
 
 ## 📋 Mô tả
 
