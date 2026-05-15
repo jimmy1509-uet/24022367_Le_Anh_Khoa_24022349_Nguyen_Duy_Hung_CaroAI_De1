@@ -1,86 +1,137 @@
-# Trò Chơi Caro AI
+# Trò Chơi Caro AI 🏆
 
-Một triển khai Python của trò chơi Caro (Gomoku) với đối thủ AI sử dụng thuật toán Minimax và Alpha-Beta pruning.
+Một triển khai Python hoàn chỉnh của trò chơi Caro (Gomoku) với đối thủ AI thông minh sử dụng thuật toán Minimax và Alpha-Beta pruning. Dự án này được phát triển như một phần của môn học Trí Tuệ Nhân Tạo.
 
-## Tính năng
+## 📋 Mô tả
 
-- **Chơi với người vs AI**: Chơi với đối thủ AI thông minh
-- **Nhiều thuật toán AI**:
-  - Thuật toán Minimax
-  - Alpha-Beta pruning (phiên bản tối ưu)
-  - Chế độ so sánh để xem cả hai thuật toán hoạt động
-- **Điều chỉnh độ khó**: Thay đổi độ sâu tìm kiếm (1-4 cấp)
-- **Giao diện tương tác**: Được xây dựng với Pygame
-  - Bàn cờ trực quan với tọa độ được đánh dấu
-  - Bảng điều khiển với thống kê trò chơi
-  - Lịch sử nước đi và chỉ số hiệu suất
-  - Thanh trượt để chọn thuật toán và điều chỉnh độ sâu
-- **Điều khiển trò chơi**:
-  - Nhấp chuột trái để đặt quân cờ
-  - 'R' để đặt lại trò chơi
-  - 'U' để hoàn tác hai nước đi cuối
-  - '1'-'4' để thay đổi độ sâu
-  - 'ESC' để thoát
+Trò chơi Caro là một trò chơi chiến lược cổ điển nơi hai người chơi lần lượt đặt quân cờ trên bàn cờ vuông. Người đầu tiên tạo được một đường thẳng với số quân cờ quy định sẽ thắng. Trong phiên bản này, AI sử dụng các thuật toán tìm kiếm nâng cao để cung cấp trải nghiệm chơi đầy thách thức.
 
-## Cấu trúc dự án
+## ✨ Tính năng chính
 
-```
-├── ai/                    # Thuật toán và logic AI
-│   ├── alphabeta.py      # Triển khai Alpha-Beta pruning
-│   ├── evaluate.py       # Các hàm đánh giá bàn cờ
-│   ├── game_logic.py     # Logic trò chơi và thực hiện nước đi AI
-│   └── minimax.py        # Triển khai thuật toán Minimax
-├── ui/                    # Các thành phần giao diện người dùng
-│   ├── board.py          # Vẽ bàn cờ
-│   ├── main.py           # Vòng lặp trò chơi chính
-│   ├── menu.py           # Bảng điều khiển và các nút
-│   └── statistics.py     # Hiển thị trạng thái
-├── constants.py          # Hằng số và cấu hình trò chơi
-├── game.py               # Quản lý trạng thái trò chơi
-├── play.py               # Tập lệnh điểm vào
-└── requirements.txt      # Các phụ thuộc Python
-```
+- **🎮 Chế độ chơi đa dạng**:
+  - Người vs AI: Thách đấu với máy thông minh
+  - Người vs Người: Chơi với bạn bè
+- **🤖 Thuật toán AI tiên tiến**:
+  - Thuật toán Minimax thuần túy
+  - Alpha-Beta pruning với cắt tỉa tối ưu
+  - Beam search để giới hạn không gian tìm kiếm
+  - Bảng transposition để tăng hiệu suất
+- **⚙️ Điều chỉnh độ khó linh hoạt**: Độ sâu tìm kiếm từ 1-4 cấp
+- **🎨 Giao diện người dùng trực quan** (Pygame):
+  - Bàn cờ 15x15 với lưới rõ ràng
+  - Bảng điều khiển hiển thị thống kê real-time
+  - Lịch sử nước đi và hiệu suất AI
+  - Thanh trượt điều chỉnh tham số
+- **🎯 Tính năng nâng cao**:
+  - Phát hiện nước đi thắng/chặn ngay lập tức
+  - Iterative deepening cho độ sâu động
+  - Đánh giá heuristic thông minh
 
-## Cài đặt
+## 🚀 Cài đặt
 
-1. Sao chép hoặc tải xuống dự án
-2. Cài đặt các phụ thuộc:
+### Yêu cầu hệ thống
+- Python 3.7+
+- Pygame 2.0+
+
+### Các bước cài đặt
+1. **Sao chép dự án**:
+   ```bash
+   git clone <repository-url>
+   cd BTB-CSAI
+   ```
+
+2. **Cài đặt dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
-## Chạy trò chơi
+3. **Chạy trò chơi**:
+   ```bash
+   python play.py
+   ```
 
-```bash
-python play.py
+## 🎲 Cách chơi
+
+### Luật cơ bản
+- **Bàn cờ**: 15x15 ô vuông
+- **Mục tiêu**: Tạo đường thẳng 4 quân cờ liên tiếp (ngang, dọc hoặc chéo)
+- **Luân phiên**: Người chơi (X) và AI (O) lần lượt đặt quân
+
+### Điều khiển
+- **🖱️ Chuột trái**: Nhấp vào ô trống để đặt quân cờ
+- **🔄 R**: Đặt lại ván chơi mới
+- **↶ U**: Hoàn tác 2 nước đi cuối cùng
+- **🔢 1-4**: Thay đổi độ sâu AI (1=dễ, 4=khó)
+- **🚪 ESC**: Thoát trò chơi
+
+### Giao diện
+- **Bàn cờ**: Khu vực chính hiển thị trạng thái trò chơi
+- **Bảng điều khiển**: Hiển thị lượt chơi, điểm số, thời gian suy nghĩ
+- **Thanh trượt**: Điều chỉnh thuật toán và độ sâu
+
+## 🧠 Thuật toán AI
+
+### Minimax
+Thuật toán cổ điển khám phá toàn bộ cây trạng thái trò chơi để tìm nước đi tối ưu. Tuy hiệu quả về mặt lý thuyết nhưng chậm với độ sâu lớn.
+
+### Alpha-Beta Pruning
+Phiên bản tối ưu của Minimax với kỹ thuật cắt tỉa nhánh không cần thiết, giảm đáng kể không gian tìm kiếm mà vẫn đảm bảo kết quả tối ưu.
+
+### Tối ưu hóa bổ sung
+- **Beam Search**: Giới hạn số nước đi xem xét tại mỗi nút (BEAM_WIDTH=20)
+- **Transposition Table**: Lưu trữ kết quả đã tính để tránh tính lại
+- **Move Ordering**: Sắp xếp nước đi theo heuristic để cắt tỉa hiệu quả hơn
+- **Iterative Deepening**: Tăng dần độ sâu để tận dụng thời gian tốt hơn
+
+### Hàm đánh giá
+Sử dụng nhận dạng mẫu để chấm điểm dựa trên:
+- Số quân liên tiếp và đầu hở
+- Vị trí trên bàn cờ (ưu tiên center)
+- Mối đe dọa từ đối thủ
+
+## 📁 Cấu trúc dự án
+
+```
+├── 📂 ai/                    # 🔍 Thuật toán và logic AI
+│   ├── alphabeta.py         # ⚡ Alpha-Beta pruning implementation
+│   ├── evaluate.py          # 📊 Hàm đánh giá bàn cờ
+│   ├── game_logic.py        # 🎮 Logic trò chơi và AI moves
+│   └── minimax.py           # 🌳 Minimax algorithm
+├── 📂 ui/                    # 🎨 Giao diện người dùng
+│   ├── board.py             # 📋 Vẽ bàn cờ
+│   ├── main.py              # 🎯 Vòng lặp chính
+│   ├── menu.py              # 🎛️ Bảng điều khiển
+│   └── statistics.py        # 📈 Thống kê
+├── 📂 benchmark/            # 🧪 Test và benchmark
+│   ├── benchmark.py         # 📊 Script benchmark
+│   ├── board_state1.py      # 🎯 Trạng thái test 1
+│   ├── board_state2.py      # 🎯 Trạng thái test 2
+│   └── board_state3.py      # 🎯 Trạng thái test 3
+├── constants.py             # ⚙️ Hằng số cấu hình
+├── game.py                  # 🎲 Quản lý trạng thái
+├── play.py                  # 🚀 Entry point
+├── requirements.txt         # 📦 Dependencies
+└── README.md               # 📖 Tài liệu này
 ```
 
-## Cách chơi
+## 🧪 Benchmark và Test
 
-1. Trò chơi được chơi trên bàn cờ 9x9
-2. Người chơi lần lượt đặt quân cờ (X cho người, O cho AI)
-3. Có 4 quân cờ liên tiếp (ngang, dọc hoặc chéo) để thắng
-4. AI sử dụng thuật toán nâng cao để cung cấp lối chơi đầy thách thức
+Dự án bao gồm hệ thống benchmark để đánh giá hiệu suất AI:
 
-## Chi tiết thuật toán
+```bash
+python src/benchmark/benchmark.py
+```
 
-- **Minimax**: Khám phá tất cả các trạng thái trò chơi có thể để tìm nước đi tối ưu
-- **Alpha-Beta**: Phiên bản tối ưu cắt tỉa các nhánh không cần thiết, nhanh hơn đáng kể
-- **Đánh giá**: Sử dụng nhận dạng mẫu để chấm điểm vị trí bàn cờ dựa trên các hình thành quân cờ
+Bao gồm 3 trạng thái test:
+- **Trạng thái 1**: Bàn cờ trống - Test nước đi đầu
+- **Trạng thái 2**: Giữa ván - Test chiến lược
+- **Trạng thái 3**: Gần thắng - Test phát hiện thắng
 
-## Điều khiển
+## 👥 Tác giả
 
-- **Chuột**: Nhấp vào ô trống để đặt quân cờ
-- **R**: Đặt lại trò chơi
-- **U**: Hoàn tác hai nước đi cuối
-- **1-4**: Thay đổi độ sâu AI
-- **ESC**: Thoát trò chơi
+- **Lê Anh Khoa** (24022367) - Phát triển thuật toán AI
+- **Nguyễn Duy Hưng** (24022349) - Thiết kế giao diện và tích hợp
 
-## Tác giả
+---
 
-- Lê Anh Khoa (24022367)
-- Nguyễn Duy Hưng (24022349)
-
-## Giấy phép
-
-Dự án này dành cho mục đích giáo dục.
+**🎉 Chúc bạn chơi vui! Nếu có góp ý hoặc câu hỏi, hãy liên hệ với tác giả.**
