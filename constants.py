@@ -15,7 +15,7 @@ BOARD_H = ROWS * CELL
 WIN_W = MARGIN + BOARD_W + MARGIN + PANEL_W + MARGIN
 WIN_H = MARGIN + BOARD_H + MARGIN + 60
 
-MAX_DEPTH = 4
+MAX_DEPTH = 6
 BEAM_WIDTH = 20  # Số nước đi tối đa xem xét tại mỗi nút
 
 BG = (245, 243, 235)

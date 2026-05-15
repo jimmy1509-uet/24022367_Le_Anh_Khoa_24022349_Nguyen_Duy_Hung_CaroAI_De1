@@ -117,7 +117,7 @@ def draw_menu(surface, game, fonts):
     # Track
     pygame.draw.rect(surface, PANEL_BORD, (bar_x, bar_y + 6, bar_w, 4), border_radius=2)
     # Fill
-    fill_w = int(bar_w * (game.depth - 1) / 3)
+    fill_w = int(bar_w * (game.depth - 1) / 5)
     pygame.draw.rect(surface, GREEN, (bar_x, bar_y + 6, fill_w, 4), border_radius=2)
     # Thumb
     tx = bar_x + fill_w
@@ -125,9 +125,9 @@ def draw_menu(surface, game, fonts):
     pygame.draw.circle(surface, (255, 255, 255), (tx, bar_y + 8), 5)
     cy_panel += 28
 
-    # Nhãn 1–4
-    for i in range(4):
-        xp = bar_x + int(bar_w * i / 3)
+    # Nhãn 1–6
+    for i in range(6):
+        xp = bar_x + int(bar_w * i / 5)
         n = fn_sm.render(str(i + 1), True, TEXT_SUB)
         surface.blit(n, (xp - n.get_width() // 2, cy_panel))
     cy_panel += fn_sm.get_height() + 12

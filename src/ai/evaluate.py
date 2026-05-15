@@ -1,18 +1,19 @@
 from constants import *
 
-# Điểm số cho các mẫu đường thẳng
-THREE = 100000000         # Ba quân liên tiếp hở 2 đầu (Rất nguy hiểm)
-THREE_OBSTACLE = 50000000 # Ba quân bị chặn một đầu
-TWO = 10000               # Hai quân liên tiếp hở 2 đầu
-TWO_OBSTACLE = 5000       # Hai quân bị chặn một đầu
-WINNING = 2000000000      # Đạt 4 quân (Thắng)
+WINNING = 1_000_000
+LOSING = -1_000_000
 
-# Điểm số cho đối thủ (Ưu tiên chặn)
-THREE_OPPONENT = -200000000
-THREE_OBSTACLE_OPPONENT = -100000000
-TWO_OPPONENT = -20000
-TWO_OBSTACLE_OPPONENT = -7500
-LOSING = -1000000000
+THREE = 50_000
+THREE_OBSTACLE = 10_000
+
+TWO = 1_000
+TWO_OBSTACLE = 200
+
+THREE_OPPONENT = -60_000
+THREE_OBSTACLE_OPPONENT = -15_000
+
+TWO_OPPONENT = -1_200
+TWO_OBSTACLE_OPPONENT = -300
 
 def eval_pattern(count, open_ends, player):
     """

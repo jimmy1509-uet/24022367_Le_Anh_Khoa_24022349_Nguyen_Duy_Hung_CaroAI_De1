@@ -52,7 +52,7 @@ def main():
                 if event.key == pygame.K_u:
                     game.undo_last_moves()
                     ai_pending = False
-                if event.key in (pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4):
+                if event.key in (pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6):
                     game.depth = int(event.unicode)
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
@@ -61,7 +61,7 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mx, my = event.pos
                 # Depth slider
-                fill_w = int(slider_w * (game.depth - 1) / 3)
+                fill_w = int(slider_w * (game.depth - 1) / 5)
                 tx = slider_x + fill_w
                 ty = slider_y + 8
                 if abs(mx - tx) <= 14 and abs(my - ty) <= 14:
@@ -137,12 +137,12 @@ def main():
 
                 if slider_x <= mx <= slider_x + slider_w and abs(my - (slider_y + 8)) <= 14:
                     raw = (mx - slider_x) / slider_w
-                    game.depth = max(1, min(4, round(raw * 3) + 1))
+                    game.depth = max(1, min(6, round(raw * 5) + 1))
 
             if event.type == pygame.MOUSEMOTION and dragging_slider:
                 mx, _ = event.pos
                 raw = (mx - slider_x) / slider_w
-                game.depth = max(1, min(4, round(raw * 3) + 1))
+                game.depth = max(1, min(6, round(raw * 5) + 1))
 
         screen.fill(BG)
 
